@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy:      #0B1F3A;
+  --gold:      #C9962A;
+  --gold-light:#E8B84B;
+  --slate:     #1E3354;
+  --muted:     #8FA3BD;
+  --surface:   #F4F7FB;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--navy);
+    color: #fff;
+  }
+}
+
+@layer utilities {
+  .text-gold    { color: var(--gold); }
+  .text-muted   { color: var(--muted); }
+  .bg-navy      { background-color: var(--navy); }
+  .bg-slate     { background-color: var(--slate); }
+  .border-gold  { border-color: var(--gold); }
+
+  /* Subtle animated gradient for the hero panel */
+  .bg-hero {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,150,42,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 80%, rgba(30,51,84,0.8) 0%, transparent 70%),
+      #0B1F3A;
+  }
+
+  .input-field {
+    @apply w-full bg-transparent border-b border-brand-muted/40 py-3 px-0
+           text-white placeholder-brand-muted/60 text-sm font-body font-light
+           focus:outline-none focus:border-brand-gold transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply w-full bg-brand-gold hover:bg-brand-gold-light text-brand-navy
+           font-body font-semibold tracking-widest text-xs uppercase
+           py-4 rounded transition-all duration-300
+           hover:shadow-[0_0_30px_rgba(201,150,42,0.35)]
+           active:scale-[0.98];
+  }
+}
+
+/* Fade-in animation for the card */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* Staggered children */
+.animate-fade-up:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+.animate-fade-up:nth-child(2) { animation-delay: 0.2s; opacity: 0; }
+.animate-fade-up:nth-child(3) { animation-delay: 0.3s; opacity: 0; }
+.animate-fade-up:nth-child(4) { animation-delay: 0.4s; opacity: 0; }
+.animate-fade-up:nth-child(5) { animation-delay: 0.5s; opacity: 0; }
