@@ -142,7 +142,7 @@ export default function DashboardPage() {
           <div className="hidden sm:flex items-center gap-3">
             {isAdmin && (
               <button
-                onClick={() => router.push("/validacion")}
+                onClick={() => router.push("/validation")}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-600/30 hover:text-emerald-300 transition text-sm font-medium"
               >
                 <ShieldCheck size={16} />
