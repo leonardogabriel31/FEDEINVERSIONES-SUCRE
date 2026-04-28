@@ -4,16 +4,22 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import {
-  Eye, EyeOff, ShieldCheck, TrendingUp, Building2, Landmark, Loader2,
+  Eye,
+  EyeOff,
+  ShieldCheck,
+  TrendingUp,
+  Building2,
+  Landmark,
+  Loader2,
 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [correo, setCorreo]             = useState("");
-  const [clave, setClave]               = useState("");
+  const [correo, setCorreo] = useState("");
+  const [clave, setClave] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading]           = useState(false);
-  const [serverError, setServerError]   = useState("");
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,7 +33,7 @@ export default function LoginPage() {
       const response = await axios.post(
         "https://fedeinversiones-mvp.onrender.com/api/auth/login/",
         { email: correo, password: clave },
-        { timeout: 30000, headers: { "Content-Type": "application/json" } }
+        { timeout: 30000, headers: { "Content-Type": "application/json" } },
       );
       const { token, user } = response.data.data;
       localStorage.setItem("access_token", token);
@@ -40,9 +46,16 @@ export default function LoginPage() {
       }
       if (error.response) {
         const data = error.response.data;
-        setServerError(data?.detail || data?.message || data?.non_field_errors?.[0] || "Credenciales incorrectas");
+        setServerError(
+          data?.detail ||
+            data?.message ||
+            data?.non_field_errors?.[0] ||
+            "Credenciales incorrectas",
+        );
       } else {
-        setServerError("No se pudo conectar con el servidor. Intenta de nuevo.");
+        setServerError(
+          "No se pudo conectar con el servidor. Intenta de nuevo.",
+        );
       }
     } finally {
       setLoading(false);
@@ -51,8 +64,6 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 lg:grid lg:grid-cols-2">
-
-      {/* PANEL IZQUIERDO — solo desktop */}
       <section className="hidden lg:flex relative overflow-hidden flex-col justify-between p-10 border-r border-white/10 bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-950">
         <div className="absolute top-0 left-0 w-80 h-80 bg-emerald-600/20 blur-3xl rounded-full" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-400/10 blur-3xl rounded-full" />
@@ -64,11 +75,15 @@ export default function LoginPage() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">FEDEINVERSIONES</h1>
-              <p className="text-slate-400 text-sm">Sistema Nacional Financiero</p>
+              <p className="text-slate-400 text-sm">
+                Sistema Nacional Financiero
+              </p>
             </div>
           </div>
           <div className="max-w-xl mt-16">
-            <p className="text-emerald-400 font-medium mb-3">Plataforma Estratégica</p>
+            <p className="text-emerald-400 font-medium mb-3">
+              Plataforma Estratégica
+            </p>
             <h2 className="text-5xl font-bold text-white leading-tight">
               Impulsando el crecimiento empresarial de Venezuela
             </h2>
@@ -81,11 +96,14 @@ export default function LoginPage() {
 
         <div className="relative z-10 grid grid-cols-3 gap-4 mt-10">
           {[
-            { Icon: Building2,   value: "350+", label: "Empresas"  },
-            { Icon: TrendingUp,  value: "120+", label: "Proyectos" },
+            { Icon: Building2, value: "350+", label: "Empresas" },
+            { Icon: TrendingUp, value: "120+", label: "Proyectos" },
             { Icon: ShieldCheck, value: "100%", label: "Seguridad" },
           ].map(({ Icon, value, label }) => (
-            <div key={label} className="bg-white/5 border border-white/10 rounded-2xl p-4">
+            <div
+              key={label}
+              className="bg-white/5 border border-white/10 rounded-2xl p-4"
+            >
               <Icon className="text-emerald-400 mb-3" size={22} />
               <p className="text-2xl font-bold text-white">{value}</p>
               <p className="text-slate-400 text-sm">{label}</p>
@@ -94,24 +112,28 @@ export default function LoginPage() {
         </div>
       </section>
 
-      {/* PANEL DERECHO — formulario */}
       <section className="flex items-center justify-center px-4 py-10 bg-slate-50 min-h-screen lg:min-h-0">
         <div className="w-full max-w-md">
-
-          {/* Branding mobile */}
           <div className="lg:hidden text-center mb-8">
             <div className="mx-auto w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg mb-4">
               <Landmark className="text-white" size={28} />
             </div>
-            <h1 className="text-2xl font-bold text-slate-800">FEDEINVERSIONES</h1>
-            <p className="text-slate-500 mt-1 text-sm">Sistema Nacional Financiero</p>
+            <h1 className="text-2xl font-bold text-slate-800">
+              FEDEINVERSIONES
+            </h1>
+            <p className="text-slate-500 mt-1 text-sm">
+              Sistema Nacional Financiero
+            </p>
           </div>
 
           <div className="bg-white border border-slate-200 rounded-3xl shadow-xl p-6 sm:p-8">
-
             <div className="mb-6 sm:mb-8">
-              <p className="text-slate-500 text-sm mb-1">Bienvenido nuevamente</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-700">Iniciar Sesión</h2>
+              <p className="text-slate-500 text-sm mb-1">
+                Bienvenido nuevamente
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-700">
+                Iniciar Sesión
+              </h2>
             </div>
 
             {serverError && (
@@ -122,25 +144,35 @@ export default function LoginPage() {
 
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm text-slate-500 mb-2">Usuario / Correo</label>
+                <label className="block text-sm text-slate-500 mb-2">
+                  Usuario / Correo
+                </label>
                 <input
                   type="email"
                   placeholder="usuario@empresa.com"
                   value={correo}
-                  onChange={(e) => { setCorreo(e.target.value); setServerError(""); }}
+                  onChange={(e) => {
+                    setCorreo(e.target.value);
+                    setServerError("");
+                  }}
                   disabled={loading}
                   className="w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 transition disabled:opacity-60 text-sm sm:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-slate-500 mb-2">Contraseña</label>
+                <label className="block text-sm text-slate-500 mb-2">
+                  Contraseña
+                </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
                     value={clave}
-                    onChange={(e) => { setClave(e.target.value); setServerError(""); }}
+                    onChange={(e) => {
+                      setClave(e.target.value);
+                      setServerError("");
+                    }}
                     disabled={loading}
                     className="w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 transition pr-12 disabled:opacity-60 text-sm sm:text-base"
                   />
@@ -159,7 +191,10 @@ export default function LoginPage() {
                   <input type="checkbox" className="accent-emerald-500" />
                   Recordarme
                 </label>
-                <a href="#" className="text-emerald-600 hover:text-emerald-700 font-medium transition text-xs sm:text-sm">
+                <a
+                  href="#"
+                  className="text-emerald-600 hover:text-emerald-700 font-medium transition text-xs sm:text-sm"
+                >
                   ¿Olvidaste tu contraseña?
                 </a>
               </div>
@@ -169,10 +204,22 @@ export default function LoginPage() {
                 disabled={loading}
                 className="w-full bg-emerald-600 hover:bg-emerald-700 transition py-3 rounded-xl text-white font-semibold shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed text-sm sm:text-base"
               >
-                {loading
-                  ? <><Loader2 size={20} className="animate-spin" />Verificando...</>
-                  : "Ingresar al Sistema"
-                }
+                {loading ? (
+                  <>
+                    <Loader2 size={20} className="animate-spin" />
+                    Verificando...
+                  </>
+                ) : (
+                  "Ingresar al Sistema"
+                )}
+              </button>
+              <button
+                type="button"
+                onClick={() => router.push("/register")}
+                disabled={loading}
+                className="w-full border border-emerald-600 text-emerald-600 hover:bg-emerald-50 transition py-3 rounded-xl font-semibold flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed text-sm sm:text-base"
+              >
+                Crear Cuenta
               </button>
             </form>
 

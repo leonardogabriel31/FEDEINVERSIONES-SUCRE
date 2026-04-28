@@ -17,9 +17,6 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: 'FEDEINDUSTRIAS | Sistema de Gestión de Fondos',
   description: 'Plataforma de inversión y gestión financiera para FEDEINDUSTRIAS',
-  icons: {
-    icon: '/favicon.ico'
-  },
 }
 
 export default function RootLayout({
