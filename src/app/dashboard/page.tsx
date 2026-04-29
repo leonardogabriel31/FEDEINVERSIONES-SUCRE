@@ -171,7 +171,7 @@ export default function DashboardPage() {
             {isAdmin && (
               <button
                 onClick={() => {
-                  router.push("/validacion");
+                  router.push("/validation");
                   setMenuOpen(false);
                 }}
                 className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 text-sm font-medium w-full"
@@ -263,12 +263,12 @@ export default function DashboardPage() {
               style={{ background: "rgba(255,255,255,0.02)" }}
             >
               <div className="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center">
-                <TrendingUp className="text-emerald-400" size={22} />
+                <TrendingUp className="text-emerald-400" size={23} />
               </div>
-              <p className="text-slate-400 text-sm font-medium">
+              <p className="text-slate-400 text-md font-medium">
                 Gráficos y estadísticas
               </p>
-              <p className="text-slate-600 text-xs">
+              <p className="text-slate-600 text-sm">
                 Próximamente — contenido en construcción 🚧
               </p>
             </div>
@@ -280,12 +280,12 @@ export default function DashboardPage() {
               style={{ background: "rgba(255,255,255,0.02)" }}
             >
               <div className="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center">
-                <ShieldCheck className="text-emerald-400" size={22} />
+                <ShieldCheck className="text-emerald-400" size={23} />
               </div>
-              <p className="text-slate-400 text-sm font-medium">
+              <p className="text-slate-400 text-md font-medium">
                 Panel de administración
               </p>
-              <p className="text-slate-600 text-xs">
+              <p className="text-slate-500 text-sm">
                 Próximamente — contenido en construcción 🚧
               </p>
             </div>

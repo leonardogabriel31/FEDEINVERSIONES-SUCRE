@@ -13,6 +13,27 @@ import {
   Loader2,
 } from "lucide-react";
 
+const parseBackendError = (data: any) => {
+  if (!data) return "Error desconocido";
+
+  if (data.msg) return data.msg;
+
+  if (data.message && Array.isArray(data.data)) {
+    return data.data[0] || data.message;
+  }
+
+  if (data.detail) return data.detail;
+
+  if (typeof data === "object") {
+    const firstKey = Object.keys(data)[0];
+    if (Array.isArray(data[firstKey])) {
+      return data[firstKey][0];
+    }
+  }
+
+  return "Error al iniciar sesión";
+};
+
 export default function LoginPage() {
   const router = useRouter();
   const [correo, setCorreo] = useState("");
@@ -24,39 +45,37 @@ export default function LoginPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setServerError("");
+
     if (!correo.trim() || !clave.trim()) {
       setServerError("Por favor completa todos los campos");
       return;
     }
+
+    setLoading(true);
+
     try {
-      setLoading(true);
       const response = await axios.post(
         "https://fedeinversiones-mvp.onrender.com/api/auth/login/",
         { email: correo, password: clave },
         { timeout: 30000, headers: { "Content-Type": "application/json" } },
       );
+
       const { token, user } = response.data.data;
+
       localStorage.setItem("access_token", token);
       localStorage.setItem("user", JSON.stringify(user));
+
       router.push("/dashboard");
     } catch (error: any) {
       if (error.code === "ECONNABORTED") {
         setServerError("El servidor tardó en responder. Intenta de nuevo.");
         return;
       }
-      if (error.response) {
-        const data = error.response.data;
-        setServerError(
-          data?.detail ||
-            data?.message ||
-            data?.non_field_errors?.[0] ||
-            "Credenciales incorrectas",
-        );
-      } else {
-        setServerError(
-          "No se pudo conectar con el servidor. Intenta de nuevo.",
-        );
-      }
+
+      const data = error.response?.data;
+      const message = parseBackendError(data);
+
+      setServerError(message);
     } finally {
       setLoading(false);
     }

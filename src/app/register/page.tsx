@@ -19,6 +19,8 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<any>({});
   const [serverError, setServerError] = useState("");
 
+  const [successMessage, setSuccessMessage] = useState("");
+
   const [form, setForm] = useState({
     full_name: "",
     rif: "",
@@ -55,8 +57,55 @@ export default function RegisterPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: "" });
+
+    let newValue = value;
+
+    if (name === "phone_number") {
+      const onlyNumbers = value.replace(/\D/g, "").slice(0, 11);
+
+      const validPrefixes = ["0412", "0414", "0424", "0416", "0426", "0212"];
+
+      if (onlyNumbers.length >= 4) {
+        const prefix = onlyNumbers.slice(0, 4);
+
+        if (!validPrefixes.includes(prefix)) {
+          setErrors({
+            ...errors,
+            phone_number: "Código no válido en Venezuela",
+          });
+        } else {
+          setErrors({
+            ...errors,
+            phone_number: "",
+          });
+        }
+
+        const rest = onlyNumbers.slice(4);
+        newValue = rest ? `${prefix}-${rest}` : `${prefix}-`;
+      } else {
+        newValue = onlyNumbers;
+        setErrors({
+          ...errors,
+          phone_number: "",
+        });
+      }
+    } else {
+      setErrors({ ...errors, [name]: "" });
+    }
+
+    setForm({ ...form, [name]: newValue });
+  };
+
+  const normalizeErrors = (data: any) => {
+    const errors: any = {};
+
+    Object.keys(data || {}).forEach((key) => {
+      if (!["detail", "message", "error", "msg"].includes(key)) {
+        errors[key] = Array.isArray(data[key]) ? data[key][0] : data[key];
+      }
+    });
+
+    return errors;
   };
 
   const validateStep = () => {
@@ -153,25 +202,57 @@ export default function RegisterPage() {
 
   const handleSubmit = async () => {
     if (!validateStep()) return;
+
     try {
       setLoading(true);
       setServerError("");
-      await axios.post(
+      setSuccessMessage("");
+
+      const response = await axios.post(
         "https://fedeinversiones-mvp.onrender.com/api/auth/register/",
         form,
         { timeout: 30000 },
       );
-      alert("Empresa registrada correctamente");
+
+      const data = response.data;
+
+      setSuccessMessage(
+        data?.message || data?.detail || "Registro completado correctamente",
+      );
+
       setForm(emptyForm);
       setStep(1);
-      router.push("/login");
+
+      setTimeout(() => {
+        router.push("/login");
+      }, 2200);
     } catch (error: any) {
-      if (error.response?.data?.errors) setErrors(error.response.data.errors);
+      const data = error.response?.data;
+
+      let fieldErrors: any = {};
+
+      if (data && typeof data === "object") {
+        Object.keys(data).forEach((key) => {
+          if (
+            key !== "detail" &&
+            key !== "message" &&
+            key !== "error" &&
+            key !== "msg"
+          ) {
+            fieldErrors[key] = Array.isArray(data[key])
+              ? data[key][0]
+              : data[key];
+          }
+        });
+      }
+
+      setErrors(fieldErrors);
+
       setServerError(
-        error.response?.data?.message || "Error al registrar empresa",
+        data?.detail || data?.message || data?.error || data?.msg || "",
       );
-    } finally {
-      setLoading(false);
+
+      setErrors(normalizeErrors(data));
     }
   };
 
@@ -232,9 +313,9 @@ export default function RegisterPage() {
             Paso {step} de {totalSteps}
           </p>
 
-          {serverError && (
-            <div className="mb-5 bg-red-100 text-red-700 p-3 rounded-xl text-sm">
-              {serverError}
+          {successMessage && (
+            <div className="mb-5 bg-emerald-50 border border-emerald-200 text-emerald-700 p-4 rounded-xl text-sm font-medium">
+              {successMessage}
             </div>
           )}
 
@@ -298,7 +379,7 @@ export default function RegisterPage() {
                 {
                   label: "Facturación Último Año (Bs.)",
                   name: "facturation_last_year",
-                  type: "text",
+                  type: "number",
                 },
               ].map(({ label, name, type }) => (
                 <div key={name}>
@@ -318,12 +399,20 @@ export default function RegisterPage() {
 
           {step === 3 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              <div className="sm:col-span-2">
+                {/* <div> */}
+                <label className={labelClass}>Datos Registro Mercantil</label>
+                <input
+                  type="text"
+                  name="mercantil"
+                  value={form.mercantil}
+                  onChange={handleChange}
+                  className={inputClass}
+                />
+                <ErrorText field="mercantil" />
+                {/* </div> */}
+              </div>
               {[
-                {
-                  label: "Datos Registro Mercantil",
-                  name: "mercantil",
-                  type: "text",
-                },
                 {
                   label: "Capital Social Suscrito",
                   name: "capital_suscribed",
@@ -365,6 +454,7 @@ export default function RegisterPage() {
               <div>
                 <label className={labelClass}>Nº Acciones</label>
                 <input
+                  type="number"
                   name="n_actions"
                   value={form.n_actions}
                   onChange={handleChange}
