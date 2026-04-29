@@ -83,13 +83,13 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 lg:grid lg:grid-cols-2">
-      <section className="hidden lg:flex relative overflow-hidden flex-col justify-between p-10 border-r border-white/10 bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-950">
-        <div className="absolute top-0 left-0 w-80 h-80 bg-emerald-600/20 blur-3xl rounded-full" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-emerald-400/10 blur-3xl rounded-full" />
+      <section className="hidden lg:flex relative overflow-hidden flex-col justify-between p-10 border-r border-white/10 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950">
+        <div className="absolute top-0 left-0 w-80 h-80 bg-blue-600/20 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-400/10 blur-3xl rounded-full" />
 
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-14 h-14 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg">
+            <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg">
               <Landmark className="text-white" size={28} />
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function LoginPage() {
             </div>
           </div>
           <div className="max-w-xl mt-16">
-            <p className="text-emerald-400 font-medium mb-3">
+            <p className="text-blue-400 font-medium mb-3">
               Plataforma Estratégica
             </p>
             <h2 className="text-5xl font-bold text-white leading-tight">
@@ -123,7 +123,7 @@ export default function LoginPage() {
               key={label}
               className="bg-white/5 border border-white/10 rounded-2xl p-4"
             >
-              <Icon className="text-emerald-400 mb-3" size={22} />
+              <Icon className="text-blue-400 mb-3" size={22} />
               <p className="text-2xl font-bold text-white">{value}</p>
               <p className="text-slate-400 text-sm">{label}</p>
             </div>
@@ -134,7 +134,7 @@ export default function LoginPage() {
       <section className="flex items-center justify-center px-4 py-10 bg-slate-50 min-h-screen lg:min-h-0">
         <div className="w-full max-w-md">
           <div className="lg:hidden text-center mb-8">
-            <div className="mx-auto w-16 h-16 rounded-2xl bg-emerald-600 flex items-center justify-center shadow-lg mb-4">
+            <div className="mx-auto w-16 h-16 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg mb-4">
               <Landmark className="text-white" size={28} />
             </div>
             <h1 className="text-2xl font-bold text-slate-800">
@@ -175,7 +175,7 @@ export default function LoginPage() {
                     setServerError("");
                   }}
                   disabled={loading}
-                  className="w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 transition disabled:opacity-60 text-sm sm:text-base"
+                  className="w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition disabled:opacity-60 text-sm sm:text-base"
                 />
               </div>
 
@@ -193,12 +193,12 @@ export default function LoginPage() {
                       setServerError("");
                     }}
                     disabled={loading}
-                    className="w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 transition pr-12 disabled:opacity-60 text-sm sm:text-base"
+                    className="w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition pr-12 disabled:opacity-60 text-sm sm:text-base"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-3 text-slate-500 hover:text-emerald-500 transition"
+                    className="absolute right-4 top-3 text-slate-500 hover:text-blue-500 transition"
                   >
                     {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
                   </button>
@@ -207,12 +207,12 @@ export default function LoginPage() {
 
               <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2 text-slate-500 cursor-pointer">
-                  <input type="checkbox" className="accent-emerald-500" />
+                  <input type="checkbox" className="accent-blue-500" />
                   Recordarme
                 </label>
                 <a
                   href="#"
-                  className="text-emerald-600 hover:text-emerald-700 font-medium transition text-xs sm:text-sm"
+                  className="text-blue-600 hover:text-blue-700 font-medium transition text-xs sm:text-sm"
                 >
                   ¿Olvidaste tu contraseña?
                 </a>
@@ -221,7 +221,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 transition py-3 rounded-xl text-white font-semibold shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed text-sm sm:text-base"
+                className="w-full bg-blue-600 hover:bg-blue-700 transition py-3 rounded-xl text-white font-semibold shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 {loading ? (
                   <>
@@ -236,7 +236,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={() => router.push("/register")}
                 disabled={loading}
-                className="w-full border border-emerald-600 text-emerald-600 hover:bg-emerald-50 transition py-3 rounded-xl font-semibold flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed text-sm sm:text-base"
+                className="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 transition py-3 rounded-xl font-semibold flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed text-sm sm:text-base"
               >
                 Crear Cuenta
               </button>

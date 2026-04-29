@@ -51,7 +51,7 @@ export default function RegisterPage() {
   });
 
   const inputClass =
-    "w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500 transition text-sm";
+    "w-full bg-slate-100 border border-slate-300 text-slate-700 px-4 py-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition text-sm";
   const labelClass = "block text-sm text-slate-600 mb-2 font-medium";
   const errorClass = "text-red-500 text-xs mt-1";
 
@@ -267,9 +267,9 @@ export default function RegisterPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-950 flex flex-col">
+    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 flex flex-col">
       <header className="border-b border-white/10 px-4 sm:px-8 py-4 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
+        <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
           <Landmark className="text-white" size={18} />
         </div>
         <div>
@@ -282,7 +282,7 @@ export default function RegisterPage() {
         </div>
         <button
           onClick={() => router.push("/login")}
-          className="ml-auto text-xs sm:text-sm text-emerald-400 hover:text-emerald-300 transition font-medium"
+          className="ml-auto text-xs sm:text-sm text-blue-400 hover:text-blue-300 transition font-medium"
         >
           ¿Ya tienes cuenta? Inicia sesión →
         </button>
@@ -295,7 +295,7 @@ export default function RegisterPage() {
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-700">
               Crear Cuenta
             </h2>
-            <p className="text-emerald-600 text-sm font-medium mt-1">
+            <p className="text-blue-600 text-sm font-medium mt-1">
               {stepTitles[step - 1]}
             </p>
           </div>
@@ -304,7 +304,7 @@ export default function RegisterPage() {
             {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}
-                className={`h-2 rounded-full transition-all ${step >= item ? "bg-emerald-500" : "bg-slate-200"}`}
+                className={`h-2 rounded-full transition-all ${step >= item ? "bg-blue-500" : "bg-slate-200"}`}
               />
             ))}
           </div>
@@ -314,7 +314,7 @@ export default function RegisterPage() {
           </p>
 
           {successMessage && (
-            <div className="mb-5 bg-emerald-50 border border-emerald-200 text-emerald-700 p-4 rounded-xl text-sm font-medium">
+            <div className="mb-5 bg-blue-50 border border-blue-200 text-blue-700 p-4 rounded-xl text-sm font-medium">
               {successMessage}
             </div>
           )}
@@ -505,7 +505,7 @@ export default function RegisterPage() {
                 />
                 <ErrorText field="password_confirm" />
               </div>
-              <div className="sm:col-span-2 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 text-emerald-700 flex gap-3 items-start text-sm">
+              <div className="sm:col-span-2 bg-blue-50 border border-blue-200 rounded-2xl p-4 sm:p-5 text-blue-700 flex gap-3 items-start text-sm">
                 <CheckCircle2 size={20} className="flex-shrink-0 mt-0.5" />
                 <p>
                   Al finalizar, los datos serán enviados para revisión
@@ -528,7 +528,7 @@ export default function RegisterPage() {
             {step < totalSteps ? (
               <button
                 onClick={nextStep}
-                className="px-4 sm:px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold flex items-center gap-2 text-sm sm:text-base transition"
+                className="px-4 sm:px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold flex items-center gap-2 text-sm sm:text-base transition"
               >
                 Siguiente
                 <ChevronRight size={18} />
@@ -537,7 +537,7 @@ export default function RegisterPage() {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="px-4 sm:px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold flex items-center gap-2 text-sm sm:text-base transition disabled:opacity-60"
+                className="px-4 sm:px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold flex items-center gap-2 text-sm sm:text-base transition disabled:opacity-60"
               >
                 {loading ? (
                   <>

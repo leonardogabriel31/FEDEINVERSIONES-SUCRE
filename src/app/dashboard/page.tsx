@@ -85,7 +85,7 @@ export default function DashboardPage() {
       value: formatCurrency(animSaldo1),
       sub: "Fondos listos para operar",
       icon: <Wallet size={22} />,
-      gradient: "from-emerald-500 to-teal-500",
+      gradient: "from-blue-500 to-cyan-500",
       glow: "rgba(16,185,129,0.2)",
       border: "rgba(16,185,129,0.2)",
     },
@@ -123,10 +123,10 @@ export default function DashboardPage() {
         .still  { display: inline-block; }
       `}</style>
 
-      <main className="min-h-screen bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-950 flex flex-col">
+      <main className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 flex flex-col">
         <header className="border-b border-white/10 px-4 sm:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600 flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-600 flex items-center justify-center flex-shrink-0">
               <Landmark className="text-white" size={18} />
             </div>
             <div>
@@ -143,7 +143,7 @@ export default function DashboardPage() {
             {isAdmin && (
               <button
                 onClick={() => router.push("/validation")}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-600/30 hover:text-emerald-300 transition text-sm font-medium"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 hover:bg-blue-600/30 hover:text-blue-300 transition text-sm font-medium"
               >
                 <ShieldCheck size={16} />
                 Validar Usuarios
@@ -174,7 +174,7 @@ export default function DashboardPage() {
                   router.push("/validation");
                   setMenuOpen(false);
                 }}
-                className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-600/20 border border-emerald-500/30 text-emerald-400 text-sm font-medium w-full"
+                className="flex items-center gap-2 px-4 py-3 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 text-sm font-medium w-full"
               >
                 <ShieldCheck size={16} />
                 Validar Usuarios
@@ -193,11 +193,11 @@ export default function DashboardPage() {
         <div className="flex-1 px-4 sm:px-8 py-8 sm:py-10 max-w-6xl mx-auto w-full">
           <div className="mb-8 sm:mb-10">
             {!isAdmin ? (
-              <p className="text-emerald-400 text-sm font-medium mb-1">
+              <p className="text-blue-400 text-sm font-medium mb-1">
                 Panel de Inversiones
               </p>
             ) : (
-              <p className="text-emerald-400 text-sm font-medium mb-1">
+              <p className="text-blue-400 text-sm font-medium mb-1">
                 Panel de Administración
               </p>
             )}
@@ -248,7 +248,7 @@ export default function DashboardPage() {
                       {card.value}
                     </p>
                     <p className="text-slate-500 text-xs mt-2 flex items-center gap-1">
-                      <ArrowUpRight size={12} className="text-emerald-400" />
+                      <ArrowUpRight size={12} className="text-blue-400" />
                       {card.sub}
                     </p>
                   </div>
@@ -262,8 +262,8 @@ export default function DashboardPage() {
               className="rounded-2xl border border-white/10 flex items-center justify-center py-16 sm:py-20 flex-col gap-3"
               style={{ background: "rgba(255,255,255,0.02)" }}
             >
-              <div className="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center">
-                <TrendingUp className="text-emerald-400" size={23} />
+              <div className="w-12 h-12 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+                <TrendingUp className="text-blue-400" size={23} />
               </div>
               <p className="text-slate-400 text-md font-medium">
                 Gráficos y estadísticas
@@ -279,8 +279,8 @@ export default function DashboardPage() {
               className="rounded-2xl border border-white/10 flex items-center justify-center py-16 sm:py-20 flex-col gap-3"
               style={{ background: "rgba(255,255,255,0.02)" }}
             >
-              <div className="w-12 h-12 rounded-2xl bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center">
-                <ShieldCheck className="text-emerald-400" size={23} />
+              <div className="w-12 h-12 rounded-2xl bg-blue-600/10 border border-blue-500/20 flex items-center justify-center">
+                <ShieldCheck className="text-blue-400" size={23} />
               </div>
               <p className="text-slate-400 text-md font-medium">
                 Panel de administración
